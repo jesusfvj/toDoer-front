@@ -29,8 +29,9 @@ const UserProvider = ({ children }) => {
   const loginUser = async (user) => {
     const response = await loginUserAPI(user);
     if (response.ok) {
-      const { name, email, _id } = response.user;
-      dispatch({ type: userTypes.login, payload: { email, name, _id } });
+      const { _doc: { name, email, _id }, token } = response.user;
+      localStorage.setItem("token", token);
+      dispatch({ type: userTypes.login, payload: { email, name, _id, token } });
     }
     return response;
   };
@@ -38,8 +39,9 @@ const UserProvider = ({ children }) => {
   const registerUser = async (user) => {
     const response = await registerUserAPI(user);
     if (response.ok) {
-      const { name, lastName, email, _id } = response.user;
-      dispatch({ type: userTypes.register, payload: { name, lastName, email, _id } });
+      const { name, lastName, email, _id, token } = response.user;
+      localStorage.setItem("token", token);
+      dispatch({ type: userTypes.register, payload: { name, lastName, email, _id, token } });
     }
     return response;
   };

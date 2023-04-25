@@ -2,9 +2,10 @@ import { Navigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext/UserContext";
 
 const PublicRoutes = ({ children }) => {
- /*  const { user } = useUser();
+  const { user } = useUser();
+  const token =  window.localStorage.getItem("token");
 
-  return !user ? children : <Navigate to="/main" />; */
+  return user && token ? <Navigate to="/main" /> : children;
   return children
 };
 

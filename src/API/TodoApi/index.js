@@ -3,6 +3,7 @@ export const registerTodoAPI = async (todo, user) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-token": window.localStorage.getItem("token")
     },
     body: JSON.stringify({
       todo,
@@ -19,6 +20,7 @@ export const getTodosAPI = async (userId) => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      "x-token": window.localStorage.getItem("token")
     }
   })
   const data = await res.json();
@@ -30,6 +32,7 @@ export const deleteTodoAPI = async (todoId) => {
     method: "DELETE",
     headers: {
       'Content-Type': 'application/json',
+      "x-token": window.localStorage.getItem("token"),
     }
   })
   const data = await res.json();
@@ -41,6 +44,7 @@ export const updateTodosAPI = async (todoEditContent, todoId) => {
     method: "PUT",
     headers: {
       'Content-Type': 'application/json',
+      "x-token": window.localStorage.getItem("token"),
     },
     body: JSON.stringify({
       todoEditContent
@@ -55,6 +59,7 @@ export const changeTodoStateAPI = async (stateTodo, directionOfChange, todoId, u
     method: "PUT",
     headers: {
       'Content-Type': 'application/json',
+      "x-token": window.localStorage.getItem("token"),
     },
     body: JSON.stringify({
       stateTodo,
