@@ -2,7 +2,7 @@ import { TodoContainer } from './TodoContainer';
 
 export const StateColumn = ({ title, stateTodo, filteredTodos }) => {
     return (
-        <section className="w-1/3 h-full bg-[url('../../../../src/assets/images/gradient2.png')] bg-cover rounded-xl">
+        <section className="min-w-[30vw] h-full bg-[url('../../../../src/assets/images/gradient2.png')] bg-cover rounded-xl">
             <div className="flex justify-center items-center h-1/6 rounded-t-xl">
                 <p className='text-center font-dancing text-xl text-white'>{title}</p>
             </div>

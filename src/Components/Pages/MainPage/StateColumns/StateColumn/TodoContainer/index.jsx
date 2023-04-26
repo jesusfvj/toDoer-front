@@ -12,8 +12,8 @@ import { useUser } from '../../../../../../context/UserContext/UserContext';
 export const TodoContainer = ({ content, stateTodo, id, filteredTodos }) => {
     const { user: { _id } } = useUser();
     const { todos, setTodos } = useTodo();
-    const [todoIsEditing, setTodoIsEditing] = useState(false)
-    const [stateTodoRender, setStateTodoRender] = useState(stateTodo)
+    const [ todoIsEditing, setTodoIsEditing ] = useState(false)
+    const [ stateTodoRender, setStateTodoRender ] = useState(stateTodo)
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const deleteTodo = async (id) => {
