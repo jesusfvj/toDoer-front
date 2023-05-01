@@ -1,3 +1,5 @@
+import { checkTokenExpired } from "../../utils/tokenExpiredValidator";
+
 export const registerTodoAPI = async (todo, user) => {
   const res = await fetch("http://localhost:4001/todo/register", {
     method: "POST",
@@ -11,20 +13,25 @@ export const registerTodoAPI = async (todo, user) => {
     })
   });
   const data = await res.json();
-  return data;
+  const okData = checkTokenExpired(data);
+  return okData && data;
 };
 
-export const getTodosAPI = async (userId) => {
-  const res = await fetch(`http://localhost:4001/todo/get/${userId}`, {
-    method: "GET",
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      "x-token": window.localStorage.getItem("token")
-    }
-  })
-  const data = await res.json();
-  return data;
+export const getTodosAPI = async (userId, stateColumns) => {
+    const res = await fetch(`http://localhost:4001/todo/get/${userId}`, {
+      method: "POST",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        "x-token": window.localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        stateColumns
+      })
+    })
+    const data = await res.json();
+    const okData = checkTokenExpired(data);
+    return okData && data;
 };
 
 export const deleteTodoAPI = async (todoId) => {
@@ -36,7 +43,8 @@ export const deleteTodoAPI = async (todoId) => {
     }
   })
   const data = await res.json();
-  return data;
+  const okData = checkTokenExpired(data);
+  return okData && data;
 };
 
 export const updateTodosAPI = async (todoEditContent, todoId) => {
@@ -51,7 +59,8 @@ export const updateTodosAPI = async (todoEditContent, todoId) => {
     })
   })
   const data = await res.json();
-  return data;
+  const okData = checkTokenExpired(data);
+  return okData && data;
 };
 
 export const changeTodoStateAPI = async (stateTodo, directionOfChange, todoId, userId) => {
@@ -68,5 +77,6 @@ export const changeTodoStateAPI = async (stateTodo, directionOfChange, todoId, u
     })
   })
   const data = await res.json();
-  return data;
+  const okData = checkTokenExpired(data);
+  return okData && data;
 };

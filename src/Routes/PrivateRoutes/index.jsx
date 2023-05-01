@@ -3,8 +3,9 @@ import { useUser } from "../../context/UserContext/UserContext";
 
 const PrivateRoutes = ({ children }) => {
   const { user } = useUser();
+  const token = window.localStorage.getItem("token");
 
-  return user ? children : <Navigate to="/" />;
+  return user && token ? children : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;

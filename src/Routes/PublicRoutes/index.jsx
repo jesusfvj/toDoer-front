@@ -3,10 +3,9 @@ import { useUser } from "../../context/UserContext/UserContext";
 
 const PublicRoutes = ({ children }) => {
   const { user } = useUser();
-  const token =  window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
 
   return user && token ? <Navigate to="/main" /> : children;
-  return children
 };
 
 export default PublicRoutes;

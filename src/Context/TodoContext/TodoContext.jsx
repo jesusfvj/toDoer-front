@@ -8,12 +8,7 @@ export const useTodo = () => {
   };
 
 export const TodoProvider = ({ children }) => {
-    const [ todos, setTodos ] = useState(
-        {
-            todosPending:[],
-            todosInProgress:[],
-            todosFinished:[]
-        })
+    const [ todos, setTodos ] = useState({})
   
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>

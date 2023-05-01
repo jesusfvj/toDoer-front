@@ -10,9 +10,10 @@ import { GoogleButton } from "../../../Base/GoogleButton";
 
 
 export const Login = ({ changeLogRegister }) => {
-  const errorTextClassName = "text-xs text-red-800";
+  const errorTextClassName = "text-xs text-red-80 text-center";
   const navigate = useNavigate();
-  const { loginUser } = useUser();
+  const { user, loginUser } = useUser();
+  const token = window.localStorage.getItem("token");
   const [ messageEmail, setMessageEmail ] = useState("")
   const [loginData, setLoginData] = useState({
     email: "",
@@ -78,6 +79,7 @@ export const Login = ({ changeLogRegister }) => {
           onInputChange={handleLoginInputChange}
         />
         {messageEmail && (<p className={errorTextClassName}>{messageEmail}</p>)}
+        {user && !token && (<p className={errorTextClassName}>Session has expired, please log in again.</p>)}
         <button
           type="submit"
           className="w-fit font-dancing text-2xl text-white transition duration-500 hover:text-[rgb(211,105,145)] mt-[0.5rem]"
