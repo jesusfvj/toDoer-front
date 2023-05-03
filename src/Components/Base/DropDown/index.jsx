@@ -32,6 +32,7 @@ function DropDown({ todoColumnId, editTodoColumn, setEditTodoColumn }) {
   return (
     <div>
       <select className="bg-transparent text-white w-4" onChange={handleSelect}>
+        <option value="" selected></option>
         <option value="delete">Delete</option>
         <option value="edit">Edit</option>
       </select>
